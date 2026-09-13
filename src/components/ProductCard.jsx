@@ -1,11 +1,10 @@
-export default function ProductCard () {
+export default function ProductCard ({product}) {
       return (
         <article className="card">
-            <img src="/assets/crossbody-bag.jpg" alt="Crossbody Sling Bag" />
-            <h3>Crossbody Sling Bag</h3>
-            <p>A timeless leather bag for everyday elegance.</p>
-            <p className="price">৳ 1450</p>
-            <button>Add to Cart</button>
+            <img src={product.image} alt={product.name} />
+            <h3>{product.name}</h3>
+            <p>{product.description}</p>
+            <p className="price">৳ {product.price}</p>
         </article>
     )
 }
