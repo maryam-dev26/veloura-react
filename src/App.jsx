@@ -6,6 +6,7 @@ function App() {
     const [activeCategory, setActiveCategory] = useState("all")
     const categories = ["all", "Bags", "Clothing", "Jewelry", "Shoes"]
     const [searchQuery, setSearchQuery] = useState("")
+    const [sortOption, setSortOption] = useState("default")
 
      const filteredProducts = products.filter(product => {
         const matchesCategory = activeCategory === "all" || product.category === activeCategory
@@ -13,6 +14,17 @@ function App() {
         return matchesCategory && matchesSearch
         })
 
+    const sortedProducts = [...filteredProducts]
+        if (sortOption === "price-low") {
+            sortedProducts.sort((a, b) => a.price - b.price)
+        } else if (sortOption === "price-high") {
+            sortedProducts.sort((a, b) => b.price - a.price)
+        } else if (sortOption === "name-az") {
+            sortedProducts.sort((a, b) => a.name.localeCompare(b.name))
+        } else if (sortOption === "name-za") {
+            sortedProducts.sort((a, b) => b.name.localeCompare(a.name))
+        }
+    
     return (
         <>
         <div className="search-box" >
@@ -35,11 +47,19 @@ function App() {
                 ))}
             </div>
 
+            <select id="sort-select" value={sortOption} onChange={(event) => setSortOption(event.target.value)}>
+                <option value="default">Sort by</option>
+                <option value="price-low">Price: Low to High</option>
+                <option value="price-high">Price: High to Low</option>
+                <option value="name-az">Name: A to Z</option>
+                <option value="name-za">Name: Z to A</option>
+            </select>
+
         <div id="product-grid">
-            {filteredProducts.length === 0 ? (
-                <p className="no-result">No products found </p>
+            {sortedProducts.length === 0 ? (
+                <p className="no-result">🔍<br/>No products found </p>
             ) : (
-                filteredProducts.map(product => (
+                sortedProducts.map(product => (
                 <ProductCard key={product.id} product={product} />
             ))
         )}            
