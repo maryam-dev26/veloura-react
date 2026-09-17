@@ -20,8 +20,34 @@ export function CartProvider({ children }) {
         })
     }
 
+    function increaseQuantity(productId) {
+    setCart(prevCart =>
+        prevCart.map(item =>
+            item.productId === productId
+                ? { ...item, quantity: item.quantity + 1 }
+                : item
+        )
+    )
+}
+
+function decreaseQuantity(productId) {
+    setCart(prevCart =>
+        prevCart
+            .map(item =>
+                item.productId === productId
+                    ? { ...item, quantity: item.quantity - 1 }
+                    : item
+            )
+            .filter(item => item.quantity > 0)
+    )
+}
+
+function removeFromCart(productId) {
+    setCart(prevCart => prevCart.filter(item => item.productId !== productId))
+}
+
     return (
-        <CartContext.Provider value={{ cart, addToCart }}>
+        <CartContext.Provider value={{ cart, addToCart, increaseQuantity, decreaseQuantity, removeFromCart }}>
             {children}
         </CartContext.Provider>
     )

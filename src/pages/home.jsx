@@ -1,7 +1,9 @@
 import { products } from "../data/product"
-import ProductCard from "../components/ProductCard"
+import  ProductCard from "../components/ProductCard"
 import { useState } from "react"
 import { Link } from "react-router-dom"
+import CartDrawer from "../components/CartDrawer"
+
 
 function Home() {
     const [activeCategory, setActiveCategory] = useState("all")
@@ -68,6 +70,8 @@ function Home() {
                     ))
                 )}            
             </div>
+
+            <CartDrawer />
         </>    
     )
 }
