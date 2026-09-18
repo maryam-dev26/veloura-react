@@ -9,7 +9,15 @@ export default function ProductCard ({product}) {
             <h3>{product.name}</h3>
             <p>{product.description}</p>
             <p className="price">৳ {product.price}</p>
-            <button onClick={() => addToCart(product.id)}>Add to Cart</button>
+            <button
+                onClick={(event) => {
+                    event.preventDefault()
+                    event.stopPropagation()
+                    addToCart(product.id)
+                }}
+            >
+                Add to Cart
+            </button>
         </article>
     )
 }
