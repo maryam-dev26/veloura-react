@@ -2,8 +2,9 @@ import { useContext } from "react"
 import { CartContext } from "../context/CartContext"
 import { products } from "../data/product.js"
 
+
 export function CartDrawer() {
-    const { cart, increaseQuantity, decreaseQuantity, removeFromCart } = useContext(CartContext)
+    const { cart, increaseQuantity, decreaseQuantity, removeFromCart,  isCartOpen, closeCart} = useContext(CartContext)
 
     const total = cart.reduce((sum, item) => {
         const product = products.find(p => p.id === item.productId)
@@ -11,9 +12,12 @@ export function CartDrawer() {
     }, 0)
 
     return (
-        <aside id="cart-drawer">
+        <>
+         <aside id="cart-drawer" className={isCartOpen ? "open" : ""}>
+            
             <div className="cart-header">
                 <h2>Your Cart</h2>
+                <button onClick={closeCart}>✕</button>
             </div>
 
             <div id="cart-items">
@@ -45,7 +49,11 @@ export function CartDrawer() {
                 <p>Total: <span>৳ {total}</span></p>
             </div>
         </aside>
+        
+        <div id="cart-overlay" className={isCartOpen ? "active" : ""} onClick={closeCart}></div>
+    </>   
     )
+    
 }
 
 export default CartDrawer

@@ -30,6 +30,12 @@ function Home() {
     
     return (
         <>
+            <section id="home">
+                <h1>Discover Your Style</h1>
+                <p>Timeless fashion for every occasion.</p>
+                <button>Shop Now</button>
+            </section>
+
         <div className="search-box" >
             <input
                 type="text"
@@ -57,20 +63,22 @@ function Home() {
                 <option value="name-az">Name: A to Z</option>
                 <option value="name-za">Name: Z to A</option>
             </select>
+            
+            <section id="shop">
+                <h2>Featured Products</h2>
+                <div id="product-grid">
+                    {sortedProducts.length === 0 ? (
+                        <p className="no-result">🔍<br/>No products found </p>
+                    ) : (
+                        sortedProducts.map(product => (
 
-            <div id="product-grid">
-                {sortedProducts.length === 0 ? (
-                    <p className="no-result">🔍<br/>No products found </p>
-                ) : (
-                    sortedProducts.map(product => (
-
-                        <Link to={`/product/${product.id}`} key={product.id} className="card-link">
-                            <ProductCard product={product} />
-                        </Link>
-                    ))
-                )}            
-            </div>
-
+                            <Link to={`/product/${product.id}`} key={product.id} className="card-link">
+                                <ProductCard product={product} />
+                            </Link>
+                        ))
+                    )}            
+                </div>
+            </section>
             <CartDrawer />
         </>    
     )
