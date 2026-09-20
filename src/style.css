@@ -32,6 +32,8 @@ body {
    ========================= */
 
 header {
+    position: relative;
+    z-index: 1001; 
     padding: var(--spacing-md);
     background-color: var(--color-secondary);
     border-bottom: 1px solid var(--color-border);
@@ -898,6 +900,11 @@ footer {
         color 0.2s ease,
         background-color 0.2s ease,
         transform 0.2s ease;
+    z-index: 10;
+}
+
+.product-detail-image {
+    position: relative;  
 }
 
 .wishlist-btn:hover {
@@ -905,6 +912,7 @@ footer {
     background-color: var(--color-secondary);
     transform: scale(1.08);
 }
+
 
 
 /* =========================

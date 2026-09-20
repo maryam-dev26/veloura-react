@@ -3,6 +3,7 @@ import  ProductCard from "../components/ProductCard"
 import { useState } from "react"
 import { Link } from "react-router-dom"
 import CartDrawer from "../components/CartDrawer"
+import WishlistDrawer from "../components/WishlistDrawer"
 
 
 function Home() {
@@ -80,6 +81,7 @@ function Home() {
                 </div>
             </section>
             <CartDrawer />
+            <WishlistDrawer />
         </>    
     )
 }

@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom"
 import { useContext } from 'react'
 import { CartContext } from '../context/CartContext'
+import { WishlistContext } from "../context/WishlistContext"
 
 function Header() {
     const { cart, openCart } = useContext(CartContext)
+    const { wishlist, openWishlist } = useContext(WishlistContext)
 
     const totalQuantity = cart.reduce((total, item) => total + item.quantity, 0)
 
@@ -31,8 +33,9 @@ function Header() {
                         </button>
                         
                         <button 
-                            id="wishlist-button">
-                            ♥ <span>0</span>
+                            id="wishlist-button" 
+                            onClick={openWishlist}>
+                            ♥ <span>{wishlist.length}</span>
                         </button>
                     </div>
                 </div>
