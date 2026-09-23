@@ -1,4 +1,4 @@
-import { createContext, useState } from 'react'
+import { createContext,  useEffect, useState } from 'react'
 
 export const CartContext = createContext()
 
@@ -54,6 +54,21 @@ function decreaseQuantity(productId) {
 function removeFromCart(productId) {
     setCart(prevCart => prevCart.filter(item => item.productId !== productId))
 }
+
+useEffect(() => {
+    try {
+        const saved = localStorage.getItem("cart")
+        if (saved) {
+            setCart(JSON.parse(saved))
+        }
+    } catch (error) {
+        setCart([])
+    }
+}, [])
+
+useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cart))
+}, [cart])
 
     return (
         <CartContext.Provider value={{

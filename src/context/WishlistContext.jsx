@@ -1,4 +1,4 @@
-import { createContext, useState } from 'react'
+import { createContext, useEffect, useState } from 'react'
 
 export const WishlistContext = createContext()
 
@@ -23,6 +23,22 @@ export function WishlistProvider({ children }) {
             }
         })
     }
+
+    useEffect(() => {
+    try {
+        const saved = localStorage.getItem("wishlist")
+
+        if (saved) {
+            setWishlist(JSON.parse(saved))
+        }
+    } catch (error) {
+        setWishlist([])
+    }
+}, [])
+
+useEffect(() => {
+    localStorage.setItem("wishlist", JSON.stringify(wishlist))
+}, [wishlist])
 
     return (
         <WishlistContext.Provider value={{
