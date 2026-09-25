@@ -919,16 +919,14 @@ footer {
    Loading
    ========================= */
 
-.loading-state {
-    grid-column: 1 / -1;
 
+.loading-state {
     width: 100%;
+    min-height: 60vh;
 
     display: flex;
     justify-content: center;
     align-items: center;
-
-    padding: 60px 0;
 }
 
 .spinner {
@@ -948,7 +946,6 @@ footer {
         transform: rotate(360deg);
     }
 }
-
 
 /* =========================
    Tablet

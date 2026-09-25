@@ -1,16 +1,26 @@
 import { useParams, Link } from 'react-router-dom'
 import { useContext } from 'react'
-import { products } from '../data/product'
+import { useProducts } from '../hooks/useProducts'
 import { CartContext } from '../context/CartContext'
 import { WishlistContext } from '../context/WishlistContext'
 
 
 function ProductDetail() {
     const { id } = useParams()
-    const product = products.find(p => p.id === Number(id))
+    const { products, loading, error } = useProducts()
     const { addToCart } = useContext(CartContext)
     const { wishlist, toggleWishlist } = useContext(WishlistContext)
 
+    if (loading) {
+            return (
+                <div className="loading-state">
+                    <div className="spinner"></div>
+                </div>
+            )
+        }
+    if (error) return <p>{error}</p>
+ 
+    const product = products.find(p => p.id === Number(id))
     if (!product) {
         return <p>Product not found.</p>
     }

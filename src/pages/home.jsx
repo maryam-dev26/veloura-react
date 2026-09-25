@@ -65,7 +65,11 @@ function Home() {
     }, [])
 
     if (loading) {
-        return <div className="spinner"></div>
+        return (
+            <div className="loading-state">
+                <div className="spinner"></div>
+            </div>
+        )
     }
 
     if (error) {

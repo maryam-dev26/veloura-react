@@ -1,9 +1,11 @@
 import { useContext } from 'react'
 import { WishlistContext } from '../context/WishlistContext'
 import { CartContext } from '../context/CartContext'
-import { products } from '../data/product'
+import { useProducts } from '../hooks/useProducts'
+
 
 function WishlistDrawer() {
+    const { products} = useProducts()
     const { wishlist, toggleWishlist, isWishlistOpen, closeWishlist } = useContext(WishlistContext)
     const { addToCart } = useContext(CartContext)
 
