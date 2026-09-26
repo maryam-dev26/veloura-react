@@ -1,11 +1,11 @@
 import { useContext } from 'react'
 import { WishlistContext } from '../context/WishlistContext'
 import { CartContext } from '../context/CartContext'
-import { useProducts } from '../hooks/useProducts'
+import { ProductsContext } from '../context/ProductsContext'
 
 
 function WishlistDrawer() {
-    const { products} = useProducts()
+    const { products} = useContext(ProductsContext)
     const { wishlist, toggleWishlist, isWishlistOpen, closeWishlist } = useContext(WishlistContext)
     const { addToCart } = useContext(CartContext)
 
@@ -28,6 +28,7 @@ function handleMoveToCart(productId) {
                 ) : (
                     wishlist.map(id => {
                         const product = products.find(p => p.id === id)
+                        if (!product) return null
                         return (
                             <div className="wishlist-item" key={id}>
                                 <img src={product.image} alt={product.name} />

@@ -1,13 +1,13 @@
 import { useParams, Link } from 'react-router-dom'
 import { useContext } from 'react'
-import { useProducts } from '../hooks/useProducts'
+import { ProductsContext } from '../context/ProductsContext'
 import { CartContext } from '../context/CartContext'
 import { WishlistContext } from '../context/WishlistContext'
 
 
 function ProductDetail() {
     const { id } = useParams()
-    const { products, loading, error } = useProducts()
+    const { products, loading, error } = useContext(ProductsContext)
     const { addToCart } = useContext(CartContext)
     const { wishlist, toggleWishlist } = useContext(WishlistContext)
 

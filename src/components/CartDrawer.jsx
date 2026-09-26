@@ -1,10 +1,10 @@
 import { useContext } from "react"
 import { CartContext } from "../context/CartContext"
-import { useProducts } from '../hooks/useProducts'
+import { ProductsContext } from "../context/ProductsContext"
 
 
 export function CartDrawer() {
-    const { products} = useProducts()
+    const { products} = useContext(ProductsContext)
     const { cart, increaseQuantity, decreaseQuantity, removeFromCart,  isCartOpen, closeCart} = useContext(CartContext)
 
     const total = cart.reduce((sum, item) => {

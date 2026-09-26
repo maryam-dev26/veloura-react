@@ -1,3 +1,4 @@
+import { ProductsProvider } from './context/ProductsContext.jsx'
 import { CartProvider } from './context/CartContext'
 import { WishlistProvider } from './context/WishlistContext.jsx'
 import { BrowserRouter } from 'react-router-dom'
@@ -8,10 +9,12 @@ import './style.css'
 
 createRoot(document.getElementById('root')).render(
     <BrowserRouter>
-        <CartProvider>
-            <WishlistProvider>
-                <App />
-            </WishlistProvider>
-        </CartProvider>
+        <ProductsProvider>
+            <CartProvider>
+                <WishlistProvider>
+                    <App />
+                </WishlistProvider>
+            </CartProvider>
+        </ProductsProvider>
     </BrowserRouter>
 )
