@@ -1,12 +1,65 @@
-import { createContext,  useEffect, useState } from 'react'
+import { createContext, useState, useEffect, useReducer } from 'react'
+
+function cartReducer(state, action) {
+    switch (action.type) {
+        case "ADD": {
+            const existingItem = state.find(item => item.productId === action.payload)
+            if (existingItem) {
+                return state.map(item =>
+                    item.productId === action.payload
+                        ? { ...item, quantity: item.quantity + 1 }
+                        : item
+                );
+            } else {
+                return [...state, { productId: action.payload, quantity: 1 }]
+            }
+        }
+        case "INCREASE":
+            return state.map(item =>
+                item.productId === action.payload
+                    ? { ...item, quantity: item.quantity + 1 }
+                    : item
+            );
+        case "DECREASE":
+            return state
+                .map(item =>
+                    item.productId === action.payload
+                        ? { ...item, quantity: item.quantity - 1 }
+                        : item
+                )
+                .filter(item => item.quantity > 0)
+        case "REMOVE":
+            return state.filter(item => item.productId !== action.payload)
+
+        case "LOAD":
+            return action.payload
+        default:
+            return state
+    }
+}
 
 export const CartContext = createContext()
 
 export function CartProvider({ children }) {
-    const [cart, setCart] = useState([])
+    const [cart, dispatch] = useReducer(cartReducer, [])
     const [isCartOpen, setIsCartOpen] = useState(false)
 
-     function openCart() {
+    function addToCart(productId) {
+        dispatch({ type: "ADD", payload: productId })
+    }
+
+    function increaseQuantity(productId) {
+        dispatch({ type: "INCREASE", payload: productId })
+    }
+
+    function decreaseQuantity(productId) {
+        dispatch({ type: "DECREASE", payload: productId })
+    }
+
+    function removeFromCart(productId) {
+        dispatch({ type: "REMOVE", payload: productId })
+    }
+    function openCart() {
         setIsCartOpen(true)
     }
 
@@ -14,55 +67,14 @@ export function CartProvider({ children }) {
         setIsCartOpen(false)
     }
 
-    function addToCart(productId) {
-        setCart(prevCart => {
-            const existingItem = prevCart.find(item => item.productId === productId)
-            if (existingItem) {
-                return prevCart.map(item =>
-                    item.productId === productId
-                        ? { ...item, quantity: item.quantity + 1 }
-                        : item
-                )
-            } else {
-                return [...prevCart, { productId, quantity: 1 }]
-            }
-        })
-    }
-
-    function increaseQuantity(productId) {
-    setCart(prevCart =>
-        prevCart.map(item =>
-            item.productId === productId
-                ? { ...item, quantity: item.quantity + 1 }
-                : item
-        )
-    )
-}
-
-function decreaseQuantity(productId) {
-    setCart(prevCart =>
-        prevCart
-            .map(item =>
-                item.productId === productId
-                    ? { ...item, quantity: item.quantity - 1 }
-                    : item
-            )
-            .filter(item => item.quantity > 0)
-    )
-}
-
-function removeFromCart(productId) {
-    setCart(prevCart => prevCart.filter(item => item.productId !== productId))
-}
-
 useEffect(() => {
     try {
         const saved = localStorage.getItem("cart")
         if (saved) {
-            setCart(JSON.parse(saved))
+            dispatch({ type: "LOAD", payload: JSON.parse(saved) })
         }
     } catch (error) {
-        setCart([])
+       dispatch({ type: "LOAD", payload: [] })
     }
 }, [])
 
@@ -81,7 +93,7 @@ useEffect(() => {
             openCart,
             closeCart
             }}>
-                {children}
+            {children}
         </CartContext.Provider>
     )
 }
