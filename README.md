@@ -5,7 +5,6 @@ A fashion & accessories e-commerce site, rebuilt in **React** after first buildi
 **Live site:** [veloura-react-ecommerce.netlify.app](https://veloura-react-ecommerce.netlify.app/)
 **Vanilla JS version:** [live](https://veloura-ecommerce.netlify.app) · [repo](https://github.com/maryam-dev26/veloura)
 
-![Veloura product grid](./screenshots/grid.png)
 
 ## About
 
