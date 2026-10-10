@@ -12,22 +12,14 @@ export function ProductsProvider({ children }) {
             try {
                 setLoading(true)
                 setError(null)
-                const response = await fetch("https://dummyjson.com/products")
+                const response = await fetch(`${import.meta.env.VITE_API_URL}/api/products`)
 
                 if (!response.ok) {
                     throw new Error("Failed to fetch products")
                 }
 
                 const data = await response.json()
-                const mapped = data.products.map(item => ({
-                    id: item.id,
-                    name: item.title,
-                    category: item.category,
-                    price: item.price,
-                    description: item.description,
-                    image: item.thumbnail,
-                    rating: item.rating
-                }))
+                const mapped = data.map(item => ({...item, id:item._id,}))
                 setProducts(mapped)
             } catch (err) {
                 setError(err.message)

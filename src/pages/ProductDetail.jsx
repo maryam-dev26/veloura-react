@@ -20,7 +20,7 @@ function ProductDetail() {
         }
     if (error) return <p>{error}</p>
  
-    const product = products.find(p => p.id === Number(id))
+    const product = products.find(p => p.id === id)
     if (!product) {
         return <p>Product not found.</p>
     }
@@ -29,11 +29,6 @@ function ProductDetail() {
 
     return (
         <div className="product-detail">
-            <button className="wishlist-btn" 
-                onClick={() => toggleWishlist(product.id)}>
-                {isWishlisted ? "♥" : "♡"}
-            </button>
-            
             <div className="product-detail-image">
                 <img src={product.image} alt={product.name} />
                 <button 
