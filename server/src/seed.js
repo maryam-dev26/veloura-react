@@ -8,7 +8,7 @@ const products = [
         category: "Bags",
         price: 650,
         description: "A spacious, everyday tote made from durable canvas.",
-        image: "/assets/Tote-Bag.jpg",
+        image: "/assets/images/Tote-Bag.jpg",
         rating: 4.3
     },
     {
@@ -16,7 +16,7 @@ const products = [
         category: "Bags",
         price: 1450,
         description: "A compact sling bag for hands-free convenience on the go.",
-        image: "/assets/crossbody-bag.jpg",
+        image: "/assets/images/crossbody-bag.jpg",
         rating: 4.4
     },
     {
@@ -24,7 +24,7 @@ const products = [
         category: "Bags",
         price: 1890,
         description: "A stylish mini backpack that fits daily essentials with ease.",
-        image: "/assets/mini-backpack.jpg",
+        image: "/assets/images/mini-backpack.jpg",
         rating: 4.6
     },
     {
@@ -32,7 +32,7 @@ const products = [
         category: "Bags",
         price: 1010,
         description: "A timeless leather bag for everyday elegance.",
-        image: "/assets/Bag.jpg",
+        image: "/assets/images/Bag.jpg",
         rating: 4.5
     },
     {
@@ -40,7 +40,7 @@ const products = [
         category: "Clothing",
         price: 3250,
         description: "A tailored blazer designed for a polished and effortless look.",
-        image: "/assets/clothing.jpg",
+        image: "/assets/images/clothing.jpg",
         rating: 4.7
     },
     {
@@ -48,7 +48,7 @@ const products = [
         category: "Jewelry",
         price: 890,
         description: "Simple and elegant earrings for everyday styling.",
-        image: "/assets/jewelry.jpg",
+        image: "/assets/images/jewelry.jpg",
         rating: 4.6
     },
     {
@@ -56,7 +56,7 @@ const products = [
         category: "Shoes",
         price: 2490,
         description: "Comfortable everyday sneakers with a clean, versatile design.",
-        image: "/assets/shoes.jpg",
+        image: "/assets/images/shoes.jpg",
         rating: 4.8
     },
     {
@@ -64,7 +64,7 @@ const products = [
         category: "Clothing",
         price: 1350,
         description: "A breathable linen shirt perfect for warm, casual days.",
-        image: "/assets/linen-shirt.jpg",
+        image: "/assets/images/linen-shirt.jpg",
         rating: 4.5
     },
     {
@@ -72,7 +72,7 @@ const products = [
         category: "Clothing",
         price: 2790,
         description: "A classic denim jacket that layers well in any season.",
-        image: "/assets/denim-jacket.jpg",
+        image: "/assets/images/denim-jacket.jpg",
         rating: 4.7
     },
     {
@@ -80,7 +80,7 @@ const products = [
         category: "Clothing",
         price: 1990,
         description: "A soft, cozy cotton sweater for everyday comfort.",
-        image: "/assets/cotton-sweater.jpg",
+        image: "/assets/images/cotton-sweater.jpg",
         rating: 4.4
     },
     {
@@ -88,7 +88,7 @@ const products = [
         category: "Jewelry",
         price: 1150,
         description: "A delicate layered necklace that adds effortless charm.",
-        image: "/assets/layered-necklace.jpg",
+        image: "/assets/images/layered-necklace.jpg",
         rating: 4.6
     },
     {
@@ -96,7 +96,7 @@ const products = [
         category: "Jewelry",
         price: 720,
         description: "Classic silver hoops that go with every outfit.",
-        image: "/assets/silver-hoops.jpg",
+        image: "/assets/images/silver-hoops.jpg",
         rating: 4.5
     },
     {
@@ -104,7 +104,7 @@ const products = [
         category: "Jewelry",
         price: 980,
         description: "An elegant pearl bracelet for a refined, subtle finish.",
-        image: "/assets/pearl-bracelet.jpg",
+        image: "/assets/images/pearl-bracelet.jpg",
         rating: 4.8
     },
     {
@@ -112,7 +112,7 @@ const products = [
         category: "Shoes",
         price: 3150,
         description: "Sturdy ankle boots built for style and all-day comfort.",
-        image: "/assets/ankle-boots.jpg",
+        image: "/assets/images/ankle-boots.jpg",
         rating: 4.7
     },
     {
@@ -120,7 +120,7 @@ const products = [
         category: "Shoes",
         price: 2350,
         description: "Smart, versatile loafers for a polished everyday look.",
-        image: "/assets/loafers.jpg",
+        image: "/assets/images/loafers.jpg",
         rating: 4.6
     },
     {
@@ -128,7 +128,7 @@ const products = [
         category: "Shoes",
         price: 1290,
         description: "Lightweight strappy sandals perfect for warm-weather days.",
-        image: "/assets/strappy-sandals.jpg",
+        image: "/assets/images/strappy-sandals.jpg",
         rating: 4.2
     }
 ]
