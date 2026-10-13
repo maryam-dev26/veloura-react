@@ -1,6 +1,6 @@
-import { User } from "mongoose"
+import { User } from "../models/userModel.js"
 
-export const userRepository = () => {
+export const authRepository = () => {
     return {
         create: async (userData) => {
             const user = await User.create(userData)
