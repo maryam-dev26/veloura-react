@@ -6,7 +6,7 @@ export default function ProductCard ({product}) {
     const { addToCart } = useContext(CartContext)
      const { wishlist, toggleWishlist } = useContext(WishlistContext)
 
-    const isWishlisted = wishlist.includes(product.id)
+    const isWishlisted = wishlist.includes(product._id)
 
       return (
         <article className="card">
@@ -15,7 +15,7 @@ export default function ProductCard ({product}) {
                 onClick={(event) => {
                     event.preventDefault()
                     event.stopPropagation()
-                    toggleWishlist(product.id)
+                    toggleWishlist(product._id)
                 }}
             >
                 {isWishlisted ? "♥" : "♡"}
@@ -28,7 +28,7 @@ export default function ProductCard ({product}) {
                 onClick={(event) => {
                     event.preventDefault()
                     event.stopPropagation()
-                    addToCart(product.id)
+                    addToCart(product._id)
                 }}
             >
                 Add to Cart

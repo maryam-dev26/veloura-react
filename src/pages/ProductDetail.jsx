@@ -20,12 +20,12 @@ function ProductDetail() {
         }
     if (error) return <p>{error}</p>
  
-    const product = products.find(p => p.id === id)
+    const product = products.find(p => p._id === id)
     if (!product) {
         return <p>Product not found.</p>
     }
 
-    const isWishlisted = wishlist.includes(product.id)
+    const isWishlisted = wishlist.includes(product._id)
 
     return (
         <div className="product-detail">
@@ -33,7 +33,7 @@ function ProductDetail() {
                 <img src={product.image} alt={product.name} />
                 <button 
                     className="wishlist-btn"   
-                    onClick={() => toggleWishlist(product.id)}>
+                    onClick={() => toggleWishlist(product._id)}>
                     {isWishlisted ? "♥" : "♡"}
                 </button>
             </div>
@@ -43,7 +43,7 @@ function ProductDetail() {
                 <p>{product.description}</p>
                 <p className="price">৳ {product.price}</p>
                 <button 
-                    onClick={() => addToCart(product.id)}>
+                    onClick={() => addToCart(product._id)}>
                         Add to Cart
                 </button>
                 <Link to="/">← Back to shop</Link>

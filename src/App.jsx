@@ -1,8 +1,10 @@
 import { Routes, Route } from 'react-router-dom'
-import Home from './pages/home'
+import Home from './pages/Home'
 import ProductDetail from './pages/ProductDetail'
 import Header from './components/Header'
 import Footer from './components/Footer'
+import Login from './pages/Login'
+import Signup from './pages/Signup'
 
 function App() {
     return (
@@ -11,6 +13,8 @@ function App() {
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/product/:id" element={<ProductDetail />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/signup" element={<Signup />} />
             </Routes>
             <Footer />
         </>
