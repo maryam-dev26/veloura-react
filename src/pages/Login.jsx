@@ -1,10 +1,12 @@
 import { useState } from "react";
-import { Navigate, useNavigate, Link } from "react-router-dom";
+import { Navigate, useNavigate, Link, useLocation } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
 function Login() {
   const { login, isAuthenticated } = useAuth()
   const navigate = useNavigate()
+  const location = useLocation()
+  const from = location.state?.from?.pathname || '/'
 
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
@@ -17,7 +19,7 @@ function Login() {
     setLoading(true)
     try {
       await login(email, password)
-      navigate("/")
+      navigate(from, {replace: true})
     } catch (error) {
       setError(error.message)
     } finally {
@@ -26,7 +28,7 @@ function Login() {
   }
 
   if (isAuthenticated) {
-    return <Navigate to="/" replace />
+    return <Navigate to={from} replace />
   }
 
   return (
@@ -36,13 +38,15 @@ function Login() {
       <input
         type="email"
         value={email}
-        onChange={(e) => setEmail(e.target.value)} placeholder="Email"
+        onChange={(e) => setEmail(e.target.value)} 
+        placeholder="Email"
         required
       />
       <input
         type="password"
         value={password}
-        onChange={(e) => setPassword(e.target.value)} placeholder="Password" minLength={6}
+        onChange={(e) => setPassword(e.target.value)} 
+        placeholder="Password" 
         required
       />
       <button
@@ -56,4 +60,4 @@ function Login() {
     </form>
   )
 }
-export default Login;
+export default Login

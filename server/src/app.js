@@ -8,7 +8,8 @@ import { env } from './config/env.js'
 export const app = express()
 
 app.use(cors({
-    origin: env.CORS_ORIGIN || 'http://localhost:5173'
+    origin: ['http://localhost:5173', 'http://localhost:5174',
+        env.CORS_ORIGIN].filter(Boolean)
 }))
 app.use(express.json())
 app.use('/api/auth', authRoutes)
