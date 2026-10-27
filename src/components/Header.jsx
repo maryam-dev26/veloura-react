@@ -1,13 +1,21 @@
-import { Link } from "react-router-dom"
-import { useState, useContext } from 'react'
-import { useEffect } from "react"
+import { Link, useNavigate } from "react-router-dom"
+import { useState, useContext, useEffect  } from 'react'
 import { CartContext } from '../context/CartContext'
 import { WishlistContext } from "../context/WishlistContext"
+import { useAuth } from "../context/AuthContext"
 
 function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false)
     const { cart, openCart } = useContext(CartContext)
     const { wishlist, openWishlist } = useContext(WishlistContext)
+
+    const {isAuthenticated, user, logout} = useAuth()
+    const navigate = useNavigate()
+
+    function handleLogOut () {
+        logout()
+        navigate('/')
+    }
 
     const totalQuantity = cart.reduce((total, item) => total + item.quantity, 0)
 
@@ -70,6 +78,18 @@ function Header() {
                             onClick={() => { closeMenu(); openWishlist() }}>
                             ♥ <span>{wishlist.length}</span>
                         </button>
+
+                        {isAuthenticated ? (
+                            <>
+                                <span>Hi, {user?.name}</span>
+                                <button onClick={() => { closeMenu(); handleLogOut() }}>Logout</button>
+                            </>
+                        ) : (
+                            <>
+                                <Link to="/login" onClick={closeMenu}>Login</Link>
+                                <Link to="/signup" onClick={closeMenu}>Sign Up</Link>
+                            </>
+                        )}
                     </div>
                 </div>
             </nav>

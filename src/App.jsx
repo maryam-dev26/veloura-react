@@ -6,7 +6,7 @@ import Footer from './components/Footer'
 import Login from './pages/Login'
 import Signup from './pages/Signup'
 import ProtectedRoute from './components/ProtectedRoute'
-import ProtectedTest from './pages/ProtectedTest'
+
 
 function App() {
     return (
@@ -18,9 +18,7 @@ function App() {
                 <Route path="/login" element={<Login />} />
                 <Route path="/signup" element={<Signup />} />
                 <Route path='/protectedTest' element={
-                    <ProtectedRoute>
-                        <ProtectedTest />
-                    </ProtectedRoute>
+                    <ProtectedRoute />
                 } />
             </Routes>
             <Footer />

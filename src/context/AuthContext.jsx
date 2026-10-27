@@ -68,6 +68,23 @@ export function AuthProvider({ children }) {
         localStorage.removeItem('user')
     }
 
+    async function authFetch(path, options = {}) {
+        const res = await fetch(`${API_URL}/api/${path}`, {
+            ...options,
+            headers: {
+                "Content-Type" : "application/json",
+                ...options.headers,
+                Authorization: `Bearer ${token}`
+            }
+        })
+
+        if(res.status === 401){
+            logout()
+            throw new Error("Session expired. Please log in again.")
+        }
+        return res   
+    }
+
     async function authRequest(path, body) {
         const res = await fetch(`${API_URL}/api/${path}`, {
             method: 'POST',
@@ -91,7 +108,7 @@ export function AuthProvider({ children }) {
         await authRequest('auth/signup', { name, email, password })
     }
 
-    const value = { user, token, isAuthenticated: !!token, login, signup, logout }
+    const value = { user, token, isAuthenticated: !!token, login, signup, logout, authFetch }
 
     return (
         <AuthContext.Provider value={value}>
