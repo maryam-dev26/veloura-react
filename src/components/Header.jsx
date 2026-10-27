@@ -81,13 +81,13 @@ function Header() {
 
                         {isAuthenticated ? (
                             <>
-                                <span>Hi, {user?.name}</span>
-                                <button onClick={() => { closeMenu(); handleLogOut() }}>Logout</button>
+                                <span className="nav-auth-greeting">Hi, {user?.name}</span>
+                                <button className="nav-auth-logout" onClick={() => { closeMenu(); handleLogOut() }}>Logout</button>
                             </>
                         ) : (
                             <>
-                                <Link to="/login" onClick={closeMenu}>Login</Link>
-                                <Link to="/signup" onClick={closeMenu}>Sign Up</Link>
+                                <Link className="nav-auth-link" to="/login" onClick={closeMenu}>Login</Link>
+                                <Link className="nav-auth-link" to="/signup" onClick={closeMenu}>Sign Up</Link>
                             </>
                         )}
                     </div>

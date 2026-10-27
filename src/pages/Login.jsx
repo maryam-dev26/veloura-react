@@ -32,32 +32,47 @@ function Login() {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h1>Login</h1>
-      {error && <p>{error}</p>}
-      <input
-        type="email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)} 
-        placeholder="Email"
-        required
-      />
-      <input
-        type="password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)} 
-        placeholder="Password" 
-        required
-      />
-      <button
-        type="submit"
-        disabled={loading}>
-        {loading ? "Logging in..." : "Login"}
-      </button>
-      <p> Don't have an account?
-        <Link to="/signup">Sign Up</Link>
-      </p>
-    </form>
+    <div className="auth-page">
+      <form className="auth-card" onSubmit={handleSubmit}>
+        <h1 className="auth-title">Login</h1>
+        <p className="auth-subtitle">Welcome back! Sign in to continue shopping.</p>
+        {error && <p className="auth-error" role="alert">{error}</p>}
+        <div className="auth-field">
+          <label htmlFor="login-email">Email</label>
+          <input
+            id="login-email"
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)} 
+            placeholder="Email"
+            autoComplete="email"
+            required
+          />
+        </div>
+        <div className="auth-field">
+          <label htmlFor="login-password">Password</label>
+          <input
+            id="login-password"
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)} 
+            placeholder="Password" 
+            autoComplete="current-password"
+            required
+          />
+        </div>
+        <button
+          className="auth-submit"
+          type="submit"
+          disabled={loading}
+          aria-busy={loading}>
+          {loading ? "Logging in..." : "Login"}
+        </button>
+        <p className="auth-switch"> Don't have an account?{" "}
+          <Link to="/signup">Sign Up</Link>
+        </p>
+      </form>
+    </div>
   )
 }
 export default Login
