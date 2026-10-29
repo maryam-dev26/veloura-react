@@ -1338,14 +1338,39 @@ footer {
     .nav-links .nav-auth-greeting {
         width: 200px;
         padding: 0;
+        padding-bottom: 8px;
 
         border-right: none;
-        border-top: 1px solid var(--color-border);
+        border-top: none;
+        border-bottom: 1px solid var(--color-border);
 
         text-align: center;
+
+        order: -1;
+        margin-bottom: 4px;
     }
 
     .nav-links .nav-auth-logout {
         min-height: 44px;
+
+        border-top: 1px solid var(--color-border);
+        border-radius: 0;
+
+        order: 1;
+        margin-top: var(--spacing-sm);
+    }
+
+    /* Promote group children to direct flex items of .nav-links
+       so the greeting / Logout can be repositioned with `order`. */
+
+    .nav-links .nav-pages,
+    .nav-links .nav-actions {
+        display: contents;
+    }
+
+    /* Compensate for the group gap lost by `display: contents` */
+
+    #cart-button {
+        margin-top: var(--spacing-sm);
     }
 }

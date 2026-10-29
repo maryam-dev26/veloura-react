@@ -7,7 +7,6 @@ export function CartDrawer() {
     const { products} = useContext(ProductsContext)
     const { cart, increaseQuantity, decreaseQuantity, removeFromCart,  isCartOpen, closeCart} = useContext(CartContext)
 
-    console.log(products[0], cart[0])
     const total = cart.reduce((sum, item) => {
         const product = products.find(p => p._id === item.productId)
         if (!product) return sum   
@@ -29,6 +28,7 @@ export function CartDrawer() {
                 ) : (
                     cart.map(item => {
                         const product = products.find(p => p._id === item.productId)
+                        if(!product) return null
                         return (
                             <div className="cart-item" key={item.productId}>
                                 <img src={product.image} alt={product.name} />
